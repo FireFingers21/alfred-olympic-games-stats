@@ -8,11 +8,11 @@ schedule_file="${alfred_workflow_data}/2026/schedule.json"
 [[ -f "${schedule_file}" ]] && [[ "$(date -r "${schedule_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./reload.sh)
 
 # Load Schedule
-jq -c --slurpfile nocDict "nocDict.json" \
+jq -cs --slurpfile nocDict "nocDict.json" \
 '{
     "skipknowledge": true,
 	"items": (if (length != 0) then
-		.units | map(
+		.[].units | map(
 		(.startDate | match("(?<=:[0-9]{2})(\\+|-)[0-9]{2}").string | tonumber * 3600) as $timeAdj |
 		(.startDate | sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) as $localStartDate |
 		(.endDate | sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) as $localEndDate |
@@ -23,8 +23,8 @@ jq -c --slurpfile nocDict "nocDict.json" \
 		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " " + .name end) as $noc0 |
 		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " " + .name end) as $noc1 |
 		{
-			"title": $localStartTime + .disciplineName + (.competitors | if (length == 2) then "   –   \($noc0)  /  \($noc1)" else "" end),
-			"subtitle": ($localStartDate | strflocaltime("%b %d") + " "*11) + $evtDesc,
+			"title": "\($localStartTime)\(.disciplineName)\(.competitors | if (length == 2) then "   –   \($noc0)  /  \($noc1)" else "" end)",
+			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*11)\($evtDesc)",
 			"match": [
                 .disciplineName, $evtDesc,
                 (.competitors | select(.) | unique_by(.noc) | $nocDict[].names."\(.[].noc)"),
