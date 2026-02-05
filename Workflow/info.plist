@@ -723,10 +723,8 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<string>autoUpdate</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>2026.2.1</string>
+	<string>2026.2.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/FireFingers21/alfred-olympic-games-stats</string>
 </dict>
