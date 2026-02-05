@@ -15,25 +15,27 @@ jq -cs --slurpfile nocDict "nocDict.json" \
 		.[].units | map(
 		(.startDate | match("(?<=:[0-9]{2})(\\+|-)[0-9]{2}").string | tonumber * 3600) as $timeAdj |
 		(.startDate | sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) as $localStartDate |
-		(.endDate | sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) as $localEndDate |
-		(if (now >= $localStartDate and now < $localEndDate) then "Now"+" "*8 else false end) as $isNow |
-		(if (now > $localEndDate) then "Done"+" "*7 else false end) as $isDone |
+		(.endDate | if . then (sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) else false end) as $localEndDate |
+		(.status == "CANCELLED") as $isCancelled |
+		(if (($isCancelled|not) and now >= $localStartDate and now < $localEndDate) then "Now"+" "*8 else false end) as $isNow |
+		(if (($isCancelled|not) and now > $localEndDate) then "Done"+" "*7 else false end) as $isDone |
 		($isDone // $isNow // ($localStartDate | strflocaltime("%H:%M") | .+" "*(if (gsub("[^1]";"")|length > 1) then 7 else 6 end))) as $localStartTime |
 		(.eventUnitName + (.locationShortDescription | if contains("Sheet") then " - "+. else "" end)) as $evtDesc |
 		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " " + .name end) as $noc0 |
 		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " " + .name end) as $noc1 |
 		{
-			"title": "\($localStartTime)\(.disciplineName)\(.competitors | if (length == 2) then "   –   \($noc0)  /  \($noc1)" else "" end)",
+			"title": "\($localStartTime)\(.disciplineName)\(.competitors | if (length == 2) then "   –   \($noc0)  /  \($noc1)" else "" end)\(if $isCancelled then "  –  Cancelled" else "" end)",
 			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*11)\($evtDesc)",
 			"match": [
                 .disciplineName, $evtDesc,
                 (.competitors | select(.) | unique_by(.noc) | $nocDict[].names."\(.[].noc)"),
-                ($localStartDate | strflocaltime("\"%b %d\" \"%b %e\""))
+                ($localStartDate | strflocaltime("\"%b %d\" \"%b %e\"")),
+                (if $isCancelled then "Cancelled" else "" end)
             ] | map(select(.)) | join(" "),
 			"icon": {"path": (if .disciplineName != "Ceremonies" then
-			    "images/sports/\(.disciplineCode)\(if $isNow then "live" else "" end).png"
+			    "images/sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png"
 			else "icon.png" end)},
-			"variables": { "stale": ($isDone and (now - $localStartDate) > (12*3600)) }
+			"variables": { "stale": ((now - $localStartDate) > (12*3600)) }
 		}) | [.[] | select(.variables.stale | not)]
 	else
 		[{
