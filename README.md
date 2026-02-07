@@ -8,9 +8,11 @@ This workflow requires [jq](https://jqlang.github.io/jq/) to function, which com
 
 ## Usage
 
-View the current [Olympic Games](https://www.olympics.com/) schedule via the `ogs` keyword, adjusted to your local time zone. Type to filter by Sport, Country, Event, or Date.
+View the current [Olympic Games](https://www.olympics.com/) schedule via the `ogs` keyword, adjusted to your local time zone. Type to filter by Sport, Country, Event, Medal Event, or Date.
 
 ![Using the ogs keyword](Workflow/images/about/keyword.png)
+
+* <kbd>↩</kbd> Open event details in browser.
 
 Append `::` to the configured [Keyword](https://www.alfredapp.com/help/workflows/inputs/keyword) to access other actions, such as manually reloading the schedule cache.
 

@@ -22,6 +22,18 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4B13F5D9-9796-4AD2-B58B-4BC76D84C720</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>209F3764-2772-409A-9327-CEB8B3DF68A2</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>21AA0846-593F-4C61-AE67-E0211DA2546A</key>
 		<array>
@@ -156,6 +168,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>reload</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>4700133B-A9CC-4AC2-A73F-FF3D0F475FE8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -243,25 +274,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>reload</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<false/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>4700133B-A9CC-4AC2-A73F-FF3D0F475FE8</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -278,9 +290,23 @@
 						<key>uid</key>
 						<string>152D09E4-E7D4-4B28-85D3-A338E4208BC3</string>
 					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>^(?!CER)</string>
+						<key>outputlabel</key>
+						<string>open</string>
+						<key>uid</key>
+						<string>209F3764-2772-409A-9327-CEB8B3DF68A2</string>
+					</dict>
 				</array>
 				<key>elselabel</key>
-				<string>views</string>
+				<string></string>
 				<key>hideelse</key>
 				<true/>
 			</dict>
@@ -290,6 +316,29 @@
 			<string>2019B0F3-9D0B-4B28-9A24-51A8E3BAC555</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>openLink.sh</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4B13F5D9-9796-4AD2-B58B-4BC76D84C720</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -554,9 +603,11 @@ This workflow requires [jq](https://jqlang.github.io/jq/) to function, which com
 
 ## Usage
 
-View the current [Olympic Games](https://www.olympics.com/) schedule via the `ogs` keyword, adjusted to your local time zone. Type to filter by Sport, Country, Event, or Date.
+View the current [Olympic Games](https://www.olympics.com/) schedule via the `ogs` keyword, adjusted to your local time zone. Type to filter by Sport, Country, Event, Medal Event, or Date.
 
 ![Using the ogs keyword](images/about/keyword.png)
+
+* &lt;kbd&gt;↩&lt;/kbd&gt; Open event details in browser.
 
 Append `::` to the configured [Keyword](https://www.alfredapp.com/help/workflows/inputs/keyword) to access other actions, such as manually reloading the schedule cache.
 
@@ -572,7 +623,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>345</real>
 			<key>ypos</key>
-			<real>155</real>
+			<real>145</real>
 		</dict>
 		<key>210AB6D9-E37D-4A72-B130-528568776620</key>
 		<dict>
@@ -622,7 +673,18 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>450</real>
 			<key>ypos</key>
-			<real>125</real>
+			<real>70</real>
+		</dict>
+		<key>4B13F5D9-9796-4AD2-B58B-4BC76D84C720</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>10</integer>
+			<key>note</key>
+			<string>Open Results</string>
+			<key>xpos</key>
+			<real>450</real>
+			<key>ypos</key>
+			<real>180</real>
 		</dict>
 		<key>4F7CABD6-D623-41A1-BFEF-8DA9405D12EA</key>
 		<dict>
