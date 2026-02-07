@@ -25,12 +25,14 @@ jq -cs --slurpfile nocDict "nocDict.json" \
 		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if .results.winnerLoserTie == "W" then "✓" else "" end)" end) as $noc1 |
 		{
 			"title": "\($localStartTime)\(.disciplineName)\(.competitors | if (length == 2) then "   –   \($noc0)  /  \($noc1)" else "" end)\(if $isCancelled then "  –  Cancelled" else "" end)",
-			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*11)\($evtDesc)",
+			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*11)\(if (.medalFlag > 0) then "🏅 " else "" end)\($evtDesc)",
+			"arg": .id,
 			"match": [
                 .disciplineName, $evtDesc,
                 (.competitors | select(.) | unique_by(.noc) | $nocDict[].names."\(.[].noc)"),
                 ($localStartDate | strflocaltime("\"%b %d\" \"%b %e\"")),
-                (if $isCancelled then "Cancelled" else "" end)
+                (if $isCancelled then "Cancelled" else "" end),
+                (if (.medalFlag > 0) then "medal" else "" end)
             ] | map(select(.)) | join(" "),
 			"icon": {"path": (if .disciplineName != "Ceremonies" then
 			    "images/sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png"
