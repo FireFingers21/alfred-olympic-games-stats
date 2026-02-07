@@ -34,9 +34,7 @@ jq -cs --slurpfile nocDict "nocDict.json" \
                 (if $isCancelled then "Cancelled" else "" end),
                 (if (.medalFlag > 0) then "medal" else "" end)
             ] | map(select(.)) | join(" "),
-			"icon": {"path": (if .disciplineName != "Ceremonies" then
-			    "images/sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png"
-			else "icon.png" end)},
+			"icon": { "path": "images/sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png" },
 			"variables": { "stale": ((now - $localStartDate) > (12*3600)) }
 		}) | [.[] | select(.variables.stale | not)]
 	else
