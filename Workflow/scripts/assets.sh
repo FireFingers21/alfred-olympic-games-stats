@@ -3,6 +3,7 @@
 # Helper functions for generating workflow assets
 
 generateNocDict() {
+    # nocs file URL: "https://www.olympics.com/wmr-owg2026/info/api/ENG/nocs"
     nocs_file="${HOME}/Downloads/nocs.json"
 
     jq '{ "emoji": [.nocs[] | { (.id): .name}] | add, "names": [.nocs[] | { (.id): .name}] | add }' "${nocs_file}"

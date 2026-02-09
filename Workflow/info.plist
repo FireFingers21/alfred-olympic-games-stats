@@ -245,7 +245,7 @@
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string>schedule.sh</string>
+				<string>scripts/schedule.sh</string>
 				<key>skipuniversalaction</key>
 				<true/>
 				<key>subtext</key>
@@ -270,6 +270,29 @@
 			<string>7FA9BFFC-366D-4872-9979-8DBF3A13B495</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>scripts/openLink.sh</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4B13F5D9-9796-4AD2-B58B-4BC76D84C720</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -352,7 +375,7 @@
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string>reload.sh</string>
+				<string>scripts/reload.sh</string>
 				<key>type</key>
 				<integer>8</integer>
 			</dict>
@@ -491,7 +514,7 @@
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string>configuration.sh</string>
+				<string>scripts/configuration.sh</string>
 				<key>skipuniversalaction</key>
 				<true/>
 				<key>subtext</key>

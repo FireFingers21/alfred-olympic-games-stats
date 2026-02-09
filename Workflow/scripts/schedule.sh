@@ -2,7 +2,6 @@
 
 # Get files for current games
 schedule_file="${alfred_workflow_data}/2026/schedule.json"
-# nocs_file="${alfred_workflow_data}/2026/nocs.json"
 
 # Auto Update
 [[ -f "${schedule_file}" ]] && [[ "$(date -r "${schedule_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./reload.sh)
@@ -10,6 +9,7 @@ schedule_file="${alfred_workflow_data}/2026/schedule.json"
 # Load Schedule
 jq -cs --slurpfile nocDict "nocDict.json" \
 '{
+    "variables": { "keyword": "'${alfred_workflow_keyword}'" },
     "skipknowledge": true,
 	"items": (if (length != 0) then
 		.[].units | map(

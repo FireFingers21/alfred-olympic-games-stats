@@ -8,7 +8,7 @@ cat << EOB
 	{
 		"title": "Reload Schedule",
 		"subtitle": "Last Updated: ${lastUpdated}",
-		"variables": { "pref_id": "reload" }
+		"variables": { "pref_id": "reload", "keyword": "${schedule_keyword}" }
 	},
 	{
 		"title": "Open Schedule in Browser",
