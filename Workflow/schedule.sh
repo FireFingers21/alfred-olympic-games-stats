@@ -24,7 +24,7 @@ jq -cs --slurpfile nocDict "nocDict.json" \
 		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if .results.winnerLoserTie == "W" then "✓" else "" end)" end) as $noc0 |
 		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if .results.winnerLoserTie == "W" then "✓" else "" end)" end) as $noc1 |
 		{
-			"title": "\($localStartTime)\(.disciplineName)\(.competitors | if (length == 2) then "   –   \($noc0)  /  \($noc1)" else "" end)\(if $isCancelled then "  –  Cancelled" else "" end)",
+			"title": "\($localStartTime)\(.disciplineName)\(if (.eventType == "TEAM" and (.competitors | length == 2)) then "   –   \($noc0)  /  \($noc1)" else "" end)\(if $isCancelled then "  –  Cancelled" else "" end)",
 			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*11)\(if (.medalFlag > 0) then "🏅 " else "" end)\($evtDesc)",
 			"arg": .id,
 			"match": [
