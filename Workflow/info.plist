@@ -8,6 +8,29 @@
 	<string>Shared</string>
 	<key>connections</key>
 	<dict>
+		<key>1AA19CAC-CC44-4E44-9F0B-4E3CC183D8DB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7C78F086-1A03-4E1C-9E0F-1AEBC1EA7CF0</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>⌘↩ Open in Browser</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>83FE1B1E-1F83-4AF2-BF60-D20C10EC7C21</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>⌥↩ Update Now</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2019B0F3-9D0B-4B28-9A24-51A8E3BAC555</key>
 		<array>
 			<dict>
@@ -55,6 +78,31 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>9D2BBEA5-0035-411B-80E9-722420550411</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2D03F8D6-2DA7-430C-A377-3DFC7620BA72</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>35FDEDE9-1BD5-470C-A47C-69C6E19A5749</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>152D09E4-E7D4-4B28-85D3-A338E4208BC3</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1AA19CAC-CC44-4E44-9F0B-4E3CC183D8DB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -154,6 +202,32 @@
 				<false/>
 			</dict>
 		</array>
+		<key>DCB7155D-ED51-4067-AFB4-93FFB63A5581</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2D03F8D6-2DA7-430C-A377-3DFC7620BA72</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
+		</array>
+		<key>E81DFF86-934C-4A9A-876E-D868CAF47764</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DCB7155D-ED51-4067-AFB4-93FFB63A5581</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>FireFingers21</string>
@@ -173,7 +247,7 @@
 				<key>passinputasargument</key>
 				<false/>
 				<key>passvariables</key>
-				<false/>
+				<true/>
 				<key>workflowbundleid</key>
 				<string>self</string>
 			</dict>
@@ -229,7 +303,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>{var:olympic_keyword}</string>
+				<string>{var:schedule_keyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -323,7 +397,7 @@
 						<key>matchstring</key>
 						<string>^(?!CER)</string>
 						<key>outputlabel</key>
-						<string>open</string>
+						<string>results</string>
 						<key>uid</key>
 						<string>209F3764-2772-409A-9327-CEB8B3DF68A2</string>
 					</dict>
@@ -343,25 +417,216 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>externaltriggerid</key>
+				<string>reload</string>
+				<key>passinputasargument</key>
 				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>35FDEDE9-1BD5-470C-A47C-69C6E19A5749</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://www.olympics.com/en/milano-cortina-2026/medals</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>7C78F086-1A03-4E1C-9E0F-1AEBC1EA7CF0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>E81DFF86-934C-4A9A-876E-D868CAF47764</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
+				<key>keyword</key>
+				<string>{var:medals_keyword}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loading...</string>
 				<key>script</key>
 				<string></string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string>openLink.sh</string>
+				<string>scripts/olympic-games.sh</string>
+				<key>skipuniversalaction</key>
+				<true/>
+				<key>subtext</key>
+				<string>View Medal Tables for the Olympic Games</string>
+				<key>title</key>
+				<string>Olympic Medal Table</string>
 				<key>type</key>
 				<integer>8</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>inboundconfig</key>
+			<dict>
+				<key>externalid</key>
+				<string>listMedals</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>4B13F5D9-9796-4AD2-B58B-4BC76D84C720</string>
+			<string>DCB7155D-ED51-4067-AFB4-93FFB63A5581</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>getMedals</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>83FE1B1E-1F83-4AF2-BF60-D20C10EC7C21</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>behaviour</key>
+				<integer>2</integer>
+				<key>fontmode</key>
+				<integer>0</integer>
+				<key>fontsizing</key>
+				<integer>0</integer>
+				<key>footertext</key>
+				<string></string>
+				<key>inputfile</key>
+				<string>scripts/medals.sh</string>
+				<key>inputtype</key>
+				<integer>1</integer>
+				<key>loadingtext</key>
+				<string></string>
+				<key>outputmode</key>
+				<integer>0</integer>
+				<key>scriptinput</key>
+				<integer>0</integer>
+				<key>spellchecking</key>
+				<integer>0</integer>
+				<key>stackview</key>
+				<false/>
+			</dict>
+			<key>inboundconfig</key>
+			<dict>
+				<key>externalid</key>
+				<string>getMedals</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.userinterface.text</string>
+			<key>uid</key>
+			<string>1AA19CAC-CC44-4E44-9F0B-4E3CC183D8DB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>reload</string>
+						<key>outputlabel</key>
+						<string>reload</string>
+						<key>uid</key>
+						<string>152D09E4-E7D4-4B28-85D3-A338E4208BC3</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>medals</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>2D03F8D6-2DA7-430C-A377-3DFC7620BA72</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -415,21 +680,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>{var:olympic_keyword} </string>
-				<key>leftcursor</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.showalfred</string>
-			<key>uid</key>
-			<string>36BC2A5D-75B1-48EA-8B8E-465794BFE78D</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -456,6 +706,21 @@
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>21AA0846-593F-4C61-AE67-E0211DA2546A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:keyword} </string>
+				<key>leftcursor</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.showalfred</string>
+			<key>uid</key>
+			<string>36BC2A5D-75B1-48EA-8B8E-465794BFE78D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -498,7 +763,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>{var:olympic_keyword}::||{var:olympic_keyword} ::</string>
+				<string>{var:schedule_keyword}::||{var:schedule_keyword} ::</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -632,6 +897,13 @@ View the current [Olympic Games](https://www.olympics.com/) schedule via the `og
 
 * &lt;kbd&gt;↩&lt;/kbd&gt; Open event details in browser.
 
+Use the `ogm` keyword to view Olympic Medal Tables.
+
+![Using the ogm keyword](images/about/medals.png)
+
+* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Open in Browser.
+* &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Refresh Medal Table.
+
 Append `::` to the configured [Keyword](https://www.alfredapp.com/help/workflows/inputs/keyword) to access other actions, such as manually reloading the schedule cache.
 
 ![Other actions](images/about/inlineSettings.png)
@@ -639,6 +911,17 @@ Append `::` to the configured [Keyword](https://www.alfredapp.com/help/workflows
 Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/) as a shortcut for viewing schedules.</string>
 	<key>uidata</key>
 	<dict>
+		<key>1AA19CAC-CC44-4E44-9F0B-4E3CC183D8DB</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>note</key>
+			<string>Show Medal Table</string>
+			<key>xpos</key>
+			<real>450</real>
+			<key>ypos</key>
+			<real>400</real>
+		</dict>
 		<key>2019B0F3-9D0B-4B28-9A24-51A8E3BAC555</key>
 		<dict>
 			<key>colorindex</key>
@@ -655,14 +938,14 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>315</real>
 			<key>ypos</key>
-			<real>665</real>
+			<real>825</real>
 		</dict>
 		<key>21AA0846-593F-4C61-AE67-E0211DA2546A</key>
 		<dict>
 			<key>xpos</key>
 			<real>580</real>
 			<key>ypos</key>
-			<real>440</real>
+			<real>600</real>
 		</dict>
 		<key>241A366E-E084-4CBD-B319-632AF3CF787B</key>
 		<dict>
@@ -671,7 +954,16 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>315</real>
 			<key>ypos</key>
-			<real>410</real>
+			<real>570</real>
+		</dict>
+		<key>2D03F8D6-2DA7-430C-A377-3DFC7620BA72</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<real>345</real>
+			<key>ypos</key>
+			<real>405</real>
 		</dict>
 		<key>3239E521-04A1-4420-B4CA-48596688FD31</key>
 		<dict>
@@ -680,14 +972,23 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>180</real>
 			<key>ypos</key>
-			<real>565</real>
+			<real>725</real>
+		</dict>
+		<key>35FDEDE9-1BD5-470C-A47C-69C6E19A5749</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<real>450</real>
+			<key>ypos</key>
+			<real>290</real>
 		</dict>
 		<key>36BC2A5D-75B1-48EA-8B8E-465794BFE78D</key>
 		<dict>
 			<key>xpos</key>
 			<real>670</real>
 			<key>ypos</key>
-			<real>440</real>
+			<real>600</real>
 		</dict>
 		<key>4700133B-A9CC-4AC2-A73F-FF3D0F475FE8</key>
 		<dict>
@@ -696,18 +997,18 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>450</real>
 			<key>ypos</key>
-			<real>70</real>
+			<real>30</real>
 		</dict>
 		<key>4B13F5D9-9796-4AD2-B58B-4BC76D84C720</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>10</integer>
 			<key>note</key>
-			<string>Open Results</string>
+			<string>Open Results in Browser</string>
 			<key>xpos</key>
 			<real>450</real>
 			<key>ypos</key>
-			<real>180</real>
+			<real>140</real>
 		</dict>
 		<key>4F7CABD6-D623-41A1-BFEF-8DA9405D12EA</key>
 		<dict>
@@ -718,16 +1019,34 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>ypos</key>
 			<real>125</real>
 		</dict>
+		<key>7C78F086-1A03-4E1C-9E0F-1AEBC1EA7CF0</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<real>630</real>
+			<key>ypos</key>
+			<real>290</real>
+		</dict>
 		<key>7FA9BFFC-366D-4872-9979-8DBF3A13B495</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>10</integer>
 			<key>note</key>
-			<string>Main Action &amp; Keyword</string>
+			<string>Schedule Keyword</string>
 			<key>xpos</key>
 			<real>180</real>
 			<key>ypos</key>
 			<real>125</real>
+		</dict>
+		<key>83FE1B1E-1F83-4AF2-BF60-D20C10EC7C21</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<real>630</real>
+			<key>ypos</key>
+			<real>400</real>
 		</dict>
 		<key>9D2BBEA5-0035-411B-80E9-722420550411</key>
 		<dict>
@@ -736,7 +1055,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>450</real>
 			<key>ypos</key>
-			<real>410</real>
+			<real>570</real>
 		</dict>
 		<key>D152973B-1A3C-423C-A1E7-12B72B2B19E2</key>
 		<dict>
@@ -747,7 +1066,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>30</real>
 			<key>ypos</key>
-			<real>560</real>
+			<real>720</real>
 		</dict>
 		<key>D4C5F95B-CA8E-4CE6-B248-3600C8E276CC</key>
 		<dict>
@@ -756,7 +1075,27 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>315</real>
 			<key>ypos</key>
-			<real>560</real>
+			<real>720</real>
+		</dict>
+		<key>DCB7155D-ED51-4067-AFB4-93FFB63A5581</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>note</key>
+			<string>Medal Table Keyword</string>
+			<key>xpos</key>
+			<real>180</real>
+			<key>ypos</key>
+			<real>385</real>
+		</dict>
+		<key>E81DFF86-934C-4A9A-876E-D868CAF47764</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>8</integer>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>385</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -780,7 +1119,28 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
-			<string>olympic_keyword</string>
+			<string>schedule_keyword</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>ogm</string>
+				<key>placeholder</key>
+				<string>ogm</string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Medals Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>medals_keyword</string>
 		</dict>
 		<dict>
 			<key>config</key>

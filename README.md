@@ -16,6 +16,13 @@ View the current [Olympic Games](https://www.olympics.com/) schedule via the `og
 
 * <kbd>↩</kbd> Open event details in browser.
 
+Use the `ogm` keyword to view Olympic Medal Tables.
+
+![Using the ogm keyword](Workflow/images/about/medals.png)
+
+* <kbd>⌘</kbd><kbd>↩</kbd> Open in Browser.
+* <kbd>⌥</kbd><kbd>↩</kbd> Refresh Medal Table.
+
 Append `::` to the configured [Keyword](https://www.alfredapp.com/help/workflows/inputs/keyword) to access other actions, such as manually reloading the schedule cache.
 
 ![Other actions](Workflow/images/about/inlineSettings.png)
