@@ -4,7 +4,7 @@
 games_file="${alfred_workflow_data}/olympic-games.json"
 
 # Auto Update
-# [[ -f "${games_file}" ]] && [[ "$(date -r "${games_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./reload.sh)
+# [[ -f "${games_file}" ]] && [[ "$(date -r "${games_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./scripts/reload.sh)
 
 # Load Olympic Games
 jq -s \
