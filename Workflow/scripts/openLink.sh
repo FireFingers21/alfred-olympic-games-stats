@@ -21,6 +21,9 @@ jq -r --arg query "${id}" \
         elif (.eventCode | contains("PGS")) then "ps/"
         elif (.eventCode | contains("SPRINT")) then "sp/"
         elif (.eventCode | contains("RELAY")) then "re/"
+        elif (.eventCode | contains("ICEDANCE")) then "id/"
+        elif (.eventName | contains("Single Skating")) then "ss/"
+        elif (.eventName | contains("Pair Skating")) then "prs/"
         elif (.eventCode | contains("SL") or contains("GS")) then "sl/"
         elif (.disciplineCode == "CCS") then (.eventName | (
             if contains("Interval") then "in/"
