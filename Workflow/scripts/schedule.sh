@@ -7,7 +7,7 @@ schedule_file="${alfred_workflow_data}/2026/schedule.json"
 [[ -f "${schedule_file}" ]] && [[ "$(date -r "${schedule_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./scripts/reload.sh)
 
 # Load Schedule
-jq -cs --slurpfile nocDict "nocDict.json" \
+jq -cs --argjson spoilSchedule "${spoilSchedule}" --argjson showOldEvents "${showOldEvents:=0}" --slurpfile nocDict "nocDict.json" \
 '{
     "variables": { "keyword": "'${alfred_workflow_keyword}'" },
     "skipknowledge": true,
@@ -25,7 +25,7 @@ jq -cs --slurpfile nocDict "nocDict.json" \
 		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if .results.winnerLoserTie == "W" then "✓" else "" end)" end) as $noc1 |
 		{
 			"title": "\($localStartTime)\(.disciplineName)\(if (.eventType == "TEAM" and (.competitors | length == 2)) then "   –   \($noc0)  /  \($noc1)" else "" end)\(if $isCancelled then "  –  Cancelled" else "" end)",
-			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*11)\(if (.medalFlag > 0) then "🏅 " else "" end)\($evtDesc)",
+			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*12)\(if (.medalFlag > 0) then "🏅 " else "" end)\($evtDesc)",
 			"arg": .id,
 			"match": [
                 .disciplineName, $evtDesc,
@@ -37,8 +37,12 @@ jq -cs --slurpfile nocDict "nocDict.json" \
                 (if ($isDone) then "done" else "" end)
             ] | map(select(.)) | join(" "),
 			"icon": { "path": "images/sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png" },
-			"variables": { "stale": ((now - $localStartDate) > (12*3600)) }
-		}) | [.[] | select(.variables.stale | not)]
+			"variables": { "stale": ((now - $localStartDate) > (12*3600)) },
+			"mods": {"alt": {
+			    "subtitle":($localStartDate | strflocaltime("%b %d")+" "*12+"⌥↩ \(if ($showOldEvents == 1) then "Hide" else "Show" end) old events"),
+				"variables": { "showOldEvents":($showOldEvents == 1 | not) }
+			}}
+		}) | (if ($showOldEvents == 1) then . else [.[] | select(.variables.stale | not)] end)
 	else
 		[{
 			"title": "No Schedule Found",
