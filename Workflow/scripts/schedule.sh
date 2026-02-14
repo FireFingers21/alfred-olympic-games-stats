@@ -33,8 +33,7 @@ jq -cs --argjson spoilSchedule "${spoilSchedule}" --argjson showOldEvents "${sho
                 ($localStartDate | strflocaltime("\"%b %d\" \"%b %e\"")),
                 (if $isCancelled then "Cancelled" else "" end),
                 (if (.medalFlag > 0) then "medal" else "" end),
-                (if ($isNow) then "live now" else "" end),
-                (if ($isDone) then "done" else "" end)
+                (if ($isNow) then "live now" elif ($isDone) then "done" else "upcoming" end)
             ] | map(select(.)) | join(" "),
 			"icon": { "path": "images/sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png" },
 			"variables": { "stale": ((now - $localStartDate) > (12*3600)) },
