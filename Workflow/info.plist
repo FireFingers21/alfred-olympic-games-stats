@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.firefingers21.olympicgamesstats</string>
+	<key>category</key>
+	<string>Shared</string>
 	<key>connections</key>
 	<dict>
 		<key>1AA19CAC-CC44-4E44-9F0B-4E3CC183D8DB</key>
@@ -1225,7 +1227,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2026.2.5</string>
+	<string>2026.2.6</string>
 	<key>webaddress</key>
 	<string>https://github.com/FireFingers21/alfred-olympic-games-stats</string>
 </dict>
