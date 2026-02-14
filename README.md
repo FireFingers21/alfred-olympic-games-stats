@@ -15,6 +15,7 @@ View the current [Olympic Games](https://www.olympics.com/) schedule via the `og
 ![Using the ogs keyword](Workflow/images/about/keyword.png)
 
 * <kbd>↩</kbd> Open event details in browser.
+* <kbd>⌥</kbd><kbd>↩</kbd> Show/Hide old events.
 
 Use the `ogm` keyword to view Olympic Medal Tables.
 

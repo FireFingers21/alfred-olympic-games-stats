@@ -4,8 +4,6 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.firefingers21.olympicgamesstats</string>
-	<key>category</key>
-	<string>Shared</string>
 	<key>connections</key>
 	<dict>
 		<key>1AA19CAC-CC44-4E44-9F0B-4E3CC183D8DB</key>
@@ -174,6 +172,16 @@
 				<string></string>
 				<key>vitoclose</key>
 				<true/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>F547C4F3-B438-4FC4-BA68-2A5F0F5250BC</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>9D2BBEA5-0035-411B-80E9-722420550411</key>
@@ -411,6 +419,25 @@
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>2019B0F3-9D0B-4B28-9A24-51A8E3BAC555</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>listSchedule</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>F547C4F3-B438-4FC4-BA68-2A5F0F5250BC</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -896,6 +923,7 @@ View the current [Olympic Games](https://www.olympics.com/) schedule via the `og
 ![Using the ogs keyword](images/about/keyword.png)
 
 * &lt;kbd&gt;↩&lt;/kbd&gt; Open event details in browser.
+* &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Show/Hide old events.
 
 Use the `ogm` keyword to view Olympic Medal Tables.
 
@@ -920,7 +948,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>450</real>
 			<key>ypos</key>
-			<real>400</real>
+			<real>505</real>
 		</dict>
 		<key>2019B0F3-9D0B-4B28-9A24-51A8E3BAC555</key>
 		<dict>
@@ -938,14 +966,14 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>315</real>
 			<key>ypos</key>
-			<real>825</real>
+			<real>930</real>
 		</dict>
 		<key>21AA0846-593F-4C61-AE67-E0211DA2546A</key>
 		<dict>
 			<key>xpos</key>
 			<real>580</real>
 			<key>ypos</key>
-			<real>600</real>
+			<real>705</real>
 		</dict>
 		<key>241A366E-E084-4CBD-B319-632AF3CF787B</key>
 		<dict>
@@ -954,7 +982,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>315</real>
 			<key>ypos</key>
-			<real>570</real>
+			<real>675</real>
 		</dict>
 		<key>2D03F8D6-2DA7-430C-A377-3DFC7620BA72</key>
 		<dict>
@@ -963,7 +991,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>345</real>
 			<key>ypos</key>
-			<real>405</real>
+			<real>510</real>
 		</dict>
 		<key>3239E521-04A1-4420-B4CA-48596688FD31</key>
 		<dict>
@@ -972,7 +1000,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>180</real>
 			<key>ypos</key>
-			<real>725</real>
+			<real>830</real>
 		</dict>
 		<key>35FDEDE9-1BD5-470C-A47C-69C6E19A5749</key>
 		<dict>
@@ -981,14 +1009,14 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>450</real>
 			<key>ypos</key>
-			<real>290</real>
+			<real>395</real>
 		</dict>
 		<key>36BC2A5D-75B1-48EA-8B8E-465794BFE78D</key>
 		<dict>
 			<key>xpos</key>
 			<real>670</real>
 			<key>ypos</key>
-			<real>600</real>
+			<real>705</real>
 		</dict>
 		<key>4700133B-A9CC-4AC2-A73F-FF3D0F475FE8</key>
 		<dict>
@@ -1026,7 +1054,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>630</real>
 			<key>ypos</key>
-			<real>290</real>
+			<real>395</real>
 		</dict>
 		<key>7FA9BFFC-366D-4872-9979-8DBF3A13B495</key>
 		<dict>
@@ -1046,7 +1074,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>630</real>
 			<key>ypos</key>
-			<real>400</real>
+			<real>505</real>
 		</dict>
 		<key>9D2BBEA5-0035-411B-80E9-722420550411</key>
 		<dict>
@@ -1055,7 +1083,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>450</real>
 			<key>ypos</key>
-			<real>570</real>
+			<real>675</real>
 		</dict>
 		<key>D152973B-1A3C-423C-A1E7-12B72B2B19E2</key>
 		<dict>
@@ -1066,7 +1094,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>30</real>
 			<key>ypos</key>
-			<real>720</real>
+			<real>825</real>
 		</dict>
 		<key>D4C5F95B-CA8E-4CE6-B248-3600C8E276CC</key>
 		<dict>
@@ -1075,7 +1103,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>315</real>
 			<key>ypos</key>
-			<real>720</real>
+			<real>825</real>
 		</dict>
 		<key>DCB7155D-ED51-4067-AFB4-93FFB63A5581</key>
 		<dict>
@@ -1086,7 +1114,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>180</real>
 			<key>ypos</key>
-			<real>385</real>
+			<real>490</real>
 		</dict>
 		<key>E81DFF86-934C-4A9A-876E-D868CAF47764</key>
 		<dict>
@@ -1095,7 +1123,16 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>xpos</key>
 			<real>30</real>
 			<key>ypos</key>
-			<real>385</real>
+			<real>490</real>
+		</dict>
+		<key>F547C4F3-B438-4FC4-BA68-2A5F0F5250BC</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>10</integer>
+			<key>xpos</key>
+			<real>450</real>
+			<key>ypos</key>
+			<real>270</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -1159,13 +1196,32 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 				<true/>
 			</dict>
 			<key>description</key>
-			<string>Interval to automatically refresh schedule in minutes.</string>
+			<string>Interval to automatically refresh Schedule in minutes.</string>
 			<key>label</key>
 			<string>Auto-Update</string>
 			<key>type</key>
 			<string>slider</string>
 			<key>variable</key>
 			<string>autoUpdate</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<true/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Show final results in Schedule</string>
+			</dict>
+			<key>description</key>
+			<string>Optionally hide event results from the Schedule view.</string>
+			<key>label</key>
+			<string>Spoilers</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>spoilSchedule</string>
 		</dict>
 	</array>
 	<key>version</key>

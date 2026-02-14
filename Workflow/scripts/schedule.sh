@@ -21,8 +21,8 @@ jq -cs --argjson spoilSchedule "${spoilSchedule}" --argjson showOldEvents "${sho
 		(if (($isCancelled|not) and now > $localEndDate) then "Done"+" "*7 else false end) as $isDone |
 		($isDone // $isNow // ($localStartDate | strflocaltime("%H:%M") | .+" "*(if (gsub("[^1]";"")|length > 1) then 7 else 6 end))) as $localStartTime |
 		(.eventUnitName + (.locationShortDescription | if contains("Sheet") then " - "+. else "" end)) as $evtDesc |
-		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if .results.winnerLoserTie == "W" then "✓" else "" end)" end) as $noc0 |
-		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if .results.winnerLoserTie == "W" then "✓" else "" end)" end) as $noc1 |
+		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc0 |
+		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc1 |
 		{
 			"title": "\($localStartTime)\(.disciplineName)\(if (.eventType == "TEAM" and (.competitors | length == 2)) then "   –   \($noc0)  /  \($noc1)" else "" end)\(if $isCancelled then "  –  Cancelled" else "" end)",
 			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*12)\(if (.medalFlag > 0) then "🏅 " else "" end)\($evtDesc)",
