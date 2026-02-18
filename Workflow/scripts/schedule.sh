@@ -7,15 +7,21 @@ schedule_file="${alfred_workflow_data}/2026/schedule.json"
 [[ -f "${schedule_file}" ]] && [[ "$(date -r "${schedule_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./scripts/reload.sh)
 
 # Load Schedule
-jq -cs --argjson spoilSchedule "${spoilSchedule}" --argjson showOldEvents "${showOldEvents:=0}" --slurpfile nocDict "nocDict.json" \
+jq -cs \
+   --argjson spoilSchedule "${spoilSchedule}" \
+   --argjson spoilSearch "${spoilSearch}" \
+   --argjson showNowTime "${showNowTime}" \
+   --argjson showDoneTime "${showDoneTime}" \
+   --argjson showOldEvents "${showOldEvents:=0}" \
+   --slurpfile nocDict "nocDict.json" \
 '{
     "variables": { "keyword": "'${alfred_workflow_keyword}'" },
     "skipknowledge": true,
 	"items": (if (length != 0) then
 		.[].units | map(
 		(.startDate | match("(?<=:[0-9]{2})(\\+|-)[0-9]{2}").string | tonumber * 3600) as $timeAdj |
-		(.startDate | sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) as $localStartDate |
-		(.endDate | if . then (sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) else false end) as $localEndDate |
+		(.startDate | sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) as $utcStartDate |
+		(.endDate | if . then (sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) else false end) as $utcEndDate |
 		(.status == "CANCELLED") as $isCancelled |
 		(if (($isCancelled|not) and now >= $localStartDate and now < $localEndDate) then "Now"+" "*8 else false end) as $isNow |
 		(if (($isCancelled|not) and now > $localEndDate) then "Done"+" "*7 else false end) as $isDone |
@@ -23,25 +29,26 @@ jq -cs --argjson spoilSchedule "${spoilSchedule}" --argjson showOldEvents "${sho
 		(.eventUnitName + (.locationShortDescription | if contains("Sheet") then " - "+. else "" end)) as $evtDesc |
 		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc0 |
 		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc1 |
+		(($spoilSchedule == 0 and (.phaseCode | contains("QUAL") or contains("FNL"))) | not) as $notSpoiler |
 		{
 			"title": "\($localStartTime)\(.disciplineName)\(if (.eventType == "TEAM" and (.competitors | length == 2)) then "   –   \($noc0)  /  \($noc1)" else "" end)\(if $isCancelled then "  –  Cancelled" else "" end)",
 			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*12)\(if (.medalFlag > 0) then "🏅 " else "" end)\($evtDesc)",
 			"arg": .id,
 			"match": [
                 .disciplineName, $evtDesc,
-                (.competitors | select(.) | unique_by(.noc) | $nocDict[].names."\(.[].noc)"),
-                ($localStartDate | strflocaltime("\"%b %d\" \"%b %e\"")),
+                (if ($notSpoiler or $spoilSearch == 1) then (.competitors | select(.) | unique_by(.noc) | $nocDict[].names."\(.[].noc)") else "" end),
+                ($utcStartDate | strflocaltime("\"%b %d\" \"%b %e\"")),
                 (if $isCancelled then "Cancelled" else "" end),
                 (if (.medalFlag > 0) then "medal" else "" end),
-                (if ($isNow) then "live now" elif ($isDone) then "done" else "upcoming" end)
+                (if ($isNow) then "live now" elif ($isDone) then "finished done" else "upcoming" end)
             ] | map(select(.)) | join(" "),
 			"icon": { "path": "images/sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png" },
-			"variables": { "stale": ((now - $localStartDate) > (12*3600)) },
+			"variables": { "stale": ((now - $utcStartDate) > (12*3600)) },
 			"mods": {"alt": {
-			    "subtitle":($localStartDate | strflocaltime("%b %d")+" "*12+"⌥↩ \(if ($showOldEvents == 1) then "Hide" else "Show" end) old events"),
+			    "subtitle":($utcStartDate | strflocaltime("%b %d")+" "*12+"⌥↩ \(if ($showOldEvents == 1) then "Hide" else "Show" end) old events"),
 				"variables": { "showOldEvents":($showOldEvents == 1 | not) }
 			}}
-		}) | (if ($showOldEvents == 1) then . else [.[] | select(.variables.stale | not)] end)
+		}) | (if ($showOldEvents == 1 or isempty(.[] | select(.variables.stale | not))) then . else [.[] | select(.variables.stale | not)] end)
 	else
 		[{
 			"title": "No Schedule Found",

@@ -1214,16 +1214,35 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 				<key>required</key>
 				<false/>
 				<key>text</key>
-				<string>Show final results in Schedule</string>
+				<string>Show results in Schedule</string>
 			</dict>
 			<key>description</key>
-			<string>Optionally hide event results from the Schedule view.</string>
+			<string></string>
 			<key>label</key>
 			<string>Spoilers</string>
 			<key>type</key>
 			<string>checkbox</string>
 			<key>variable</key>
 			<string>spoilSchedule</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Search hidden results in Schedule</string>
+			</dict>
+			<key>description</key>
+			<string>Optionally include event results &amp; qualified teams in the Schedule.</string>
+			<key>label</key>
+			<string></string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>spoilSearch</string>
 		</dict>
 	</array>
 	<key>version</key>
