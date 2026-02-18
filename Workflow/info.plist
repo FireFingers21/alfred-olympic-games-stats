@@ -183,7 +183,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 		</array>
 		<key>9D2BBEA5-0035-411B-80E9-722420550411</key>
@@ -792,7 +792,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>{var:schedule_keyword}::||{var:schedule_keyword} ::</string>
+				<string>{var:schedule_keyword}::||{var:schedule_keyword} ::||{var:medals_keyword}::||{var:medals_keyword} ::</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
