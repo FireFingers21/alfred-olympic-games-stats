@@ -8,19 +8,26 @@ id="${1}"
 getLink() {
 jq -r --arg query "${id}" \
       --arg baseUrl "${baseUrl}" \
-'.units[] | select(.id == $query) |
+'([.groups[].unitId]) as $groupPhaseName |
+.units[] | select(.id == $query) |
     "\($baseUrl)/" +
     "\(.disciplineCode)/" +
     (
-        if ((["BTH","FSK"] as $d | .disciplineCode | IN($d[])) and (.eventType | . == "TEAM" or . == "DGRP")) then "te/"
+        if ((["BTH","FSK","SJP"] as $d | .disciplineCode | IN($d[])) and (.eventType | . == "TEAM" or . == "DGRP")) then "te/"
         elif (.eventCode | contains("TC")) then "tc/"
-        elif (.eventName | contains("Mixed Team Relay")) then "tr/"
-        elif (.eventName == "Team Pursuit") then "tp/"
+        elif (.eventName | contains("Team Relay")) then "tr/"
+        elif (.eventCode | contains("RY4-")) then "tr/"
+        elif (.eventCode | contains("TEAMPU") or contains("TEAMSP")) then "tp/"
+        elif (.eventCode | contains("SX-") or contains("SBX-")) then "sx/"
+        elif (.eventCode | contains("XT")) then "xt/"
+        elif (.id | contains("SSKWMS") or contains("SSKMMS")) then "ms/"
+        elif (.eventCode | contains("AET")) then "at/"
+        elif (.eventCode | contains("AE-")) then "ae/"
         elif (.eventCode | contains("DM")) then "dm/"
-        elif (.eventCode | contains("MO")) then "mo/"
+        elif (.eventCode | contains("MO-")) then "mo/"
         elif (.eventCode | contains("PGS")) then "ps/"
         elif (.eventCode | contains("SPRINT")) then "sp/"
-        elif (.eventCode | contains("RELAY")) then "re/"
+        elif (.eventCode | contains("RELAY-")) then "re/"
         elif (.eventCode | contains("ICEDANCE")) then "id/"
         elif (.eventName | contains("Single Skating")) then "ss/"
         elif (.eventName | contains("Pair Skating")) then "prs/"
@@ -46,14 +53,10 @@ jq -r --arg query "${id}" \
     "\(.genderCode)/" +
     "\(.eventCode)/" +
     "\(.phaseCode)/" +
-    "\(
-        if (["SBD","STK"] as $d | .disciplineCode | IN($d[])) then "--------"
-        elif ((.disciplineCode == "FRS") and (.eventCode | contains("MO") | not)) then "--------"
-        else .id[-8:]
-    end)/" +
+    "\(if (.groupId | if . then (contains("QUAL") or contains("FNL")) else false end) or (.id[-8:] | test("^[A-D]")) or (.id | test("00000[0-9]--$")) or (.phaseCode | contains("SEED") or contains("QUAL") or contains("FNL")) and ("\(.sessionCode)_\(.phaseId)" | IN($groupPhaseName[])) then "--------" else .id[-8:] end)/" +
     "\(
         if (["FRS","FSK","NCB","SBD","SJP"] as $d | .disciplineCode | IN($d[])) then "result"
-        elif ((.eventUnitType == "TEAM") or (["INDV","DGRP","IGRP"] as $e | .eventType | IN($e[]))) then "race-result"
+        elif ((.eventUnitType | contains("TEAM")) or (["INDV","DGRP","IGRP"] as $e | .eventType | IN($e[]))) then "race-result"
         else "team-lineups"
     end)" | ascii_downcase
 ' "${schedule_file}"
