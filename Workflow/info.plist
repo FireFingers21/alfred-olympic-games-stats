@@ -1184,6 +1184,44 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Always show time of Live events</string>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Appearance</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>showNowTime</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Always show time of Finished events</string>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string></string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>showDoneTime</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>defaultvalue</key>
 				<integer>60</integer>
 				<key>markercount</key>
