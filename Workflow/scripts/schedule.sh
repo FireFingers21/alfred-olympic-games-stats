@@ -31,8 +31,8 @@ jq -cs \
 		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc1 |
 		(($spoilSchedule == 0 and (.phaseCode | contains("QUAL") or contains("FNL"))) | not) as $notSpoiler |
 		{
-			"title": "\($localStartTime)\(.disciplineName)\(if (.eventType == "TEAM" and (.competitors | length == 2)) then "   –   \($noc0)  /  \($noc1)" else "" end)\(if $isCancelled then "  –  Cancelled" else "" end)",
-			"subtitle": "\($localStartDate | strflocaltime("%b %d") + " "*12)\(if (.medalFlag > 0) then "🏅 " else "" end)\($evtDesc)",
+			"title": "\($localStartTime)\(.disciplineName)\(if $isCancelled then "  –  Cancelled" elif ($notSpoiler and .eventType == "TEAM" and (.competitors | length == 2)) then "   –   \($noc0)  /  \($noc1)" else "" end)",
+			"subtitle": "\($utcStartDate | strflocaltime("%b %d") + " "*12)\(if (.medalFlag > 0) then "🏅 " else "" end)\($evtDesc)",
 			"arg": .id,
 			"match": [
                 .disciplineName, $evtDesc,
