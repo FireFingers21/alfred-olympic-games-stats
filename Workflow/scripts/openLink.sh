@@ -53,10 +53,10 @@ jq -r --arg query "${id}" \
     "\(.genderCode)/" +
     "\(.eventCode)/" +
     "\(.phaseCode)/" +
-    "\(if (.groupId | if . then (contains("QUAL") or contains("FNL")) else false end) or (.id[-8:] | test("^[A-D]")) or (.id | test("00000[0-9]--$")) or (.phaseCode | contains("SEED") or contains("QUAL") or contains("FNL")) and ("\(.sessionCode)_\(.phaseId)" | IN($groupPhaseName[])) then "--------" else .id[-8:] end)/" +
+    "\(if (.groupId | if . then (contains("QUAL") or contains("FNL")) else false end) or (.id[-8:] | test("^[A-D]")) or (.id | test("00000[0-9]--$")) or (.phaseCode | contains("SEED")) or (.phaseCode | contains("QUAL") or contains("FNL")) and ("\(.sessionCode)_\(.phaseId)" | IN($groupPhaseName[])) then "--------" else .id[-8:] end)/" +
     "\(
         if (["FRS","FSK","NCB","SBD","SJP"] as $d | .disciplineCode | IN($d[])) then "result"
-        elif ((.eventUnitType | contains("TEAM")) or (["INDV","DGRP","IGRP"] as $e | .eventType | IN($e[]))) then "race-result"
+        elif ((["INDV","DGRP","IGRP"] as $e | .eventType | IN($e[]))) then "race-result"
         else "team-lineups"
     end)" | ascii_downcase
 ' "${schedule_file}"
