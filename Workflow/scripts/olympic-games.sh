@@ -4,10 +4,10 @@
 games_file="${alfred_workflow_data}/olympic-games.json"
 
 # Auto Update
-# [[ -f "${games_file}" ]] && [[ "$(date -r "${games_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./scripts/reload.sh)
+# [[ -f "${games_file}" ]] && [[ "$(date -r "${games_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./scripts/reload.sh "${+para}")
 
 # Load Olympic Games
-jq -s \
+jq -cs \
 '{
     "variables": { "keyword": "'${alfred_workflow_keyword}'" },
     "skipknowledge": true,
@@ -18,10 +18,14 @@ jq -s \
 		{
 			"title": .title,
 			"arg": .slug,
-			"variables": {
-			    "game": "https://bff-api.olympics.com/bff/api/usdm/v1/competitions/\(.slug)?languageCode=EN",
-				"name": "\(.title) \(.season) Olympics"
-			}
+			"icon": { "path": "images/sports/CER.png" },
+			"variables": { "name": "\(.title) \(.season) Olympics" }
+		},
+		{
+			"title": "\(.title) Paralympics",
+			"arg": .slug,
+			"icon": { "path": "images/parasports/CER.png" },
+			"variables": { "name": "\(.title) \(.season) Paralympics", "para": 1 }
 		})
 	else
 		[{

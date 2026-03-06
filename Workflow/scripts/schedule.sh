@@ -1,13 +1,18 @@
 #!/bin/zsh --no-rcs
 
+# Paralympic check
+[[ "${alfred_workflow_keyword}" == "${schedule_keyword_para}" ]] && para=1
+
 # Get files for current games
-schedule_file="${alfred_workflow_data}/2026/schedule.json"
+schedule_file="${alfred_workflow_data}/2026/${para:+para/}schedule.json"
 
 # Auto Update
-[[ -f "${schedule_file}" ]] && [[ "$(date -r "${schedule_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./scripts/reload.sh)
+[[ -f "${schedule_file}" ]] && [[ "$(date -r "${schedule_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]] && reload=$(./scripts/reload.sh "${+para}")
 
 # Load Schedule
 jq -cs \
+   --arg alfred_workflow_keyword "${alfred_workflow_keyword}" \
+   --argjson para "${para:=0}" \
    --argjson spoilSchedule "${spoilSchedule}" \
    --argjson spoilSearch "${spoilSearch}" \
    --argjson showNowTime "${showNowTime}" \
@@ -27,8 +32,8 @@ jq -cs \
 		(if (($isCancelled|not) and now > $utcEndDate) then "Done"+" "*7 else false end) as $isDone |
 		((if ($showDoneTime != 1) then $isDone else false end) // (if ($showNowTime != 1) then $isNow else false end) // ($utcStartDate | strflocaltime("%H:%M") | .+" "*(if (gsub("[^1]";"")|length > 1) then 7 else 6 end))) as $localStartTime |
 		(.eventUnitName + (.locationShortDescription | if contains("Sheet") then " - "+. else "" end)) as $evtDesc |
-		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc0 |
-		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(.name) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc1 |
+		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(if ($para == 1) then .noc else .name end) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc0 |
+		(.competitors.[1] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(if ($para == 1) then .noc else .name end) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc1 |
 		(($spoilSchedule == 0 and (.phaseCode | contains("QUAL") or contains("FNL"))) | not) as $notSpoiler |
 		{
 			"title": "\($localStartTime)\(.disciplineName)\(if $isCancelled then "  –  Cancelled" elif ($notSpoiler and .eventType == "TEAM" and (.competitors | length == 2)) then "   –   \($noc0)  /  \($noc1)" else "" end)",
@@ -41,11 +46,11 @@ jq -cs \
                 (if (.medalFlag > 0) then "medal" else "" end),
                 (if $isCancelled then "Cancelled" elif ($isNow) then "live now" elif ($isDone) then "finished done" else "upcoming" end)
             ] | map(select(.)) | join(" "),
-			"icon": { "path": "images/sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png" },
+			"icon": { "path": "images/\(if ($para == 1) then "para" else "" end)sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png" },
 			"variables": { "stale": ((now - $utcStartDate) > (12*3600)) },
 			"mods": {"alt": {
 			    "subtitle":($utcStartDate | strflocaltime("%b %d")+" "*12+"⌥↩ \(if ($showOldEvents == 1) then "Hide" else "Show" end) old events"),
-				"variables": { "showOldEvents":($showOldEvents == 1 | not) }
+				"variables": { "showOldEvents":($showOldEvents == 1 | not), "schedule_keyword": $alfred_workflow_keyword }
 			}}
 		}) | (if ($showOldEvents == 1 or isempty(.[] | select(.variables.stale | not))) then . else [.[] | select(.variables.stale | not)] end)
 	else

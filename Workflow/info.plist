@@ -86,6 +86,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>27072B26-CABC-4706-B3DE-27FF42ED64F2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7FA9BFFC-366D-4872-9979-8DBF3A13B495</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2D03F8D6-2DA7-430C-A377-3DFC7620BA72</key>
 		<array>
 			<dict>
@@ -154,6 +167,19 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>27072B26-CABC-4706-B3DE-27FF42ED64F2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6501DC38-B25F-45EF-8F1F-61B9A0A18A5E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
 				<string>7FA9BFFC-366D-4872-9979-8DBF3A13B495</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -184,6 +210,32 @@
 				<string></string>
 				<key>vitoclose</key>
 				<true/>
+			</dict>
+		</array>
+		<key>88E68C95-4205-457D-80EF-898FFA6BF9E4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6501DC38-B25F-45EF-8F1F-61B9A0A18A5E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9938C58C-E6AB-47A7-AC93-044CB6D45F0E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DCB7155D-ED51-4067-AFB4-93FFB63A5581</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>9D2BBEA5-0035-411B-80E9-722420550411</key>
@@ -225,24 +277,11 @@
 				<true/>
 			</dict>
 		</array>
-		<key>E81DFF86-934C-4A9A-876E-D868CAF47764</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>DCB7155D-ED51-4067-AFB4-93FFB63A5581</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 	</dict>
 	<key>createdby</key>
 	<string>FireFingers21</string>
 	<key>description</key>
-	<string>View the current Olympic standings &amp; stats</string>
+	<string>View the current Olympic/Paralympic standings &amp; stats</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -280,13 +319,15 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>32</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>1572864</integer>
+				<key>hotstring</key>
+				<string>U</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>relatedAppsMode</key>
 				<integer>0</integer>
 			</dict>
@@ -313,7 +354,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>{var:schedule_keyword}</string>
+				<string>{var:schedule_keyword}||{var:schedule_keyword_para}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -333,7 +374,7 @@
 				<key>skipuniversalaction</key>
 				<true/>
 				<key>subtext</key>
-				<string>View the current schedule for the Olympic Games</string>
+				<string>View the current Olympic/Paralympic schedule</string>
 				<key>title</key>
 				<string>Olympic Games Schedule</string>
 				<key>type</key>
@@ -354,6 +395,14 @@
 			<string>7FA9BFFC-366D-4872-9979-8DBF3A13B495</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>27072B26-CABC-4706-B3DE-27FF42ED64F2</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -421,6 +470,57 @@
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>2019B0F3-9D0B-4B28-9A24-51A8E3BAC555</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>38</integer>
+				<key>hotmod</key>
+				<integer>1572864</integer>
+				<key>hotstring</key>
+				<string>J</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>2</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>88E68C95-4205-457D-80EF-898FFA6BF9E4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>schedule_keyword</key>
+					<string>{var:schedule_keyword_para}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>6501DC38-B25F-45EF-8F1F-61B9A0A18A5E</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -495,20 +595,22 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>32</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>U</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>relatedAppsMode</key>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
-			<string>E81DFF86-934C-4A9A-876E-D868CAF47764</string>
+			<string>9938C58C-E6AB-47A7-AC93-044CB6D45F0E</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -560,6 +662,8 @@
 			<dict>
 				<key>externalid</key>
 				<string>listMedals</string>
+				<key>inputmode</key>
+				<integer>1</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -611,7 +715,7 @@
 				<key>spellchecking</key>
 				<integer>0</integer>
 				<key>stackview</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>inboundconfig</key>
 			<dict>
@@ -756,25 +860,23 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>open "https://www.olympics.com/en/milano-cortina-2026/schedule"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
+				<key>browser</key>
 				<string></string>
-				<key>type</key>
-				<integer>11</integer>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
 			<string>D4C5F95B-CA8E-4CE6-B248-3600C8E276CC</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -792,7 +894,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>{var:schedule_keyword}::||{var:schedule_keyword} ::||{var:medals_keyword}::||{var:medals_keyword} ::</string>
+				<string>{var:schedule_keyword}::||{var:schedule_keyword} ::||{var:schedule_keyword_para}::||{var:schedule_keyword_para} ::||{var:medals_keyword}::||{var:medals_keyword} ::</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -920,25 +1022,25 @@ This workflow requires [jq](https://jqlang.github.io/jq/) to function, which com
 
 ## Usage
 
-View the current [Olympic Games](https://www.olympics.com/) schedule via the `ogs` keyword, adjusted to your local time zone. Type to filter by Sport, Country, Event, Medal Event, or Date.
+View the current [Olympic](https://www.olympics.com/) and [Paralympic](https://www.paralympic.org/) schedules via the `ogs` and `pgs` keywords, adjusted to your local time zone. Type to filter by Sport, Country, Event, Medal Event, or Date.
 
 ![Using the ogs keyword](images/about/keyword.png)
 
 * &lt;kbd&gt;↩&lt;/kbd&gt; Open event details in browser.
 * &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Show/Hide old events.
 
-Use the `ogm` keyword to view Olympic Medal Tables.
+Use the `ogm` keyword to view the Olympic and Paralympic Medal Tables.
 
 ![Using the ogm keyword](images/about/medals.png)
 
 * &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Open in Browser.
 * &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Refresh Medal Table.
 
-Append `::` to the configured [Keyword](https://www.alfredapp.com/help/workflows/inputs/keyword) to access other actions, such as manually reloading the schedule cache.
+Append `::` to the configured [Keywords](https://www.alfredapp.com/help/workflows/inputs/keyword) to access other actions, such as manually reloading the schedule cache.
 
 ![Other actions](images/about/inlineSettings.png)
 
-Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/) as a shortcut for viewing schedules.</string>
+Configure the [Hotkeys](https://www.alfredapp.com/help/workflows/triggers/hotkey/) as shortcuts for viewing the schedules and medal tables.</string>
 	<key>uidata</key>
 	<dict>
 		<key>1AA19CAC-CC44-4E44-9F0B-4E3CC183D8DB</key>
@@ -948,7 +1050,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>note</key>
 			<string>Show Medal Table</string>
 			<key>xpos</key>
-			<real>450</real>
+			<real>490</real>
 			<key>ypos</key>
 			<real>505</real>
 		</dict>
@@ -957,7 +1059,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>colorindex</key>
 			<integer>10</integer>
 			<key>xpos</key>
-			<real>345</real>
+			<real>385</real>
 			<key>ypos</key>
 			<real>145</real>
 		</dict>
@@ -986,12 +1088,21 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>ypos</key>
 			<real>675</real>
 		</dict>
+		<key>27072B26-CABC-4706-B3DE-27FF42ED64F2</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>8</integer>
+			<key>xpos</key>
+			<real>160</real>
+			<key>ypos</key>
+			<real>125</real>
+		</dict>
 		<key>2D03F8D6-2DA7-430C-A377-3DFC7620BA72</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<real>345</real>
+			<real>385</real>
 			<key>ypos</key>
 			<real>510</real>
 		</dict>
@@ -1009,7 +1120,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<real>450</real>
+			<real>490</real>
 			<key>ypos</key>
 			<real>395</real>
 		</dict>
@@ -1025,7 +1136,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>colorindex</key>
 			<integer>10</integer>
 			<key>xpos</key>
-			<real>450</real>
+			<real>490</real>
 			<key>ypos</key>
 			<real>30</real>
 		</dict>
@@ -1036,7 +1147,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>note</key>
 			<string>Open Results in Browser</string>
 			<key>xpos</key>
-			<real>450</real>
+			<real>490</real>
 			<key>ypos</key>
 			<real>140</real>
 		</dict>
@@ -1044,17 +1155,28 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 		<dict>
 			<key>colorindex</key>
 			<integer>8</integer>
+			<key>note</key>
+			<string>Olympic Schedule</string>
 			<key>xpos</key>
 			<real>30</real>
 			<key>ypos</key>
-			<real>125</real>
+			<real>65</real>
+		</dict>
+		<key>6501DC38-B25F-45EF-8F1F-61B9A0A18A5E</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>8</integer>
+			<key>xpos</key>
+			<real>160</real>
+			<key>ypos</key>
+			<real>205</real>
 		</dict>
 		<key>7C78F086-1A03-4E1C-9E0F-1AEBC1EA7CF0</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<real>630</real>
+			<real>670</real>
 			<key>ypos</key>
 			<real>395</real>
 		</dict>
@@ -1065,7 +1187,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>note</key>
 			<string>Schedule Keyword</string>
 			<key>xpos</key>
-			<real>180</real>
+			<real>220</real>
 			<key>ypos</key>
 			<real>125</real>
 		</dict>
@@ -1073,10 +1195,32 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
+			<key>note</key>
+			<string>Reload Medal Table</string>
 			<key>xpos</key>
-			<real>630</real>
+			<real>670</real>
 			<key>ypos</key>
 			<real>505</real>
+		</dict>
+		<key>88E68C95-4205-457D-80EF-898FFA6BF9E4</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>8</integer>
+			<key>note</key>
+			<string>Paralympic Schedule</string>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>205</real>
+		</dict>
+		<key>9938C58C-E6AB-47A7-AC93-044CB6D45F0E</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>8</integer>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>490</real>
 		</dict>
 		<key>9D2BBEA5-0035-411B-80E9-722420550411</key>
 		<dict>
@@ -1114,16 +1258,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>note</key>
 			<string>Medal Table Keyword</string>
 			<key>xpos</key>
-			<real>180</real>
-			<key>ypos</key>
-			<real>490</real>
-		</dict>
-		<key>E81DFF86-934C-4A9A-876E-D868CAF47764</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>8</integer>
-			<key>xpos</key>
-			<real>30</real>
+			<real>220</real>
 			<key>ypos</key>
 			<real>490</real>
 		</dict>
@@ -1132,7 +1267,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>colorindex</key>
 			<integer>10</integer>
 			<key>xpos</key>
-			<real>450</real>
+			<real>490</real>
 			<key>ypos</key>
 			<real>270</real>
 		</dict>
@@ -1154,11 +1289,32 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Schedule Keyword</string>
+			<string>Olympic Schedule</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
 			<string>schedule_keyword</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>pgs</string>
+				<key>placeholder</key>
+				<string>pgs</string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Paralympic Schedule</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>schedule_keyword_para</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1173,9 +1329,9 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 				<true/>
 			</dict>
 			<key>description</key>
-			<string></string>
+			<string>Keywords for viewing the Schedules and Medal Tables.</string>
 			<key>label</key>
-			<string>Medals Keyword</string>
+			<string>Olympic Medals</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -1267,7 +1423,7 @@ Configure the [Hotkey](https://www.alfredapp.com/help/workflows/triggers/hotkey/
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<false/>
+				<true/>
 				<key>required</key>
 				<false/>
 				<key>text</key>

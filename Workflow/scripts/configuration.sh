@@ -1,7 +1,10 @@
 #!/bin/zsh --no-rcs
 
+# Paralympic check
+[[ "${alfred_workflow_keyword}" == "${schedule_keyword_para}"* ]] && para=1 && schedule_keyword="${schedule_keyword_para}"
+
 # Get lastest cache timestamp
-readonly lastUpdated=$(date -r "${alfred_workflow_data}/2026/schedule.json" +"%A, %B %d %Y at %I:%M%p" || printf "Never")
+readonly lastUpdated=$(date -r "${alfred_workflow_data}/2026/${para:+para/}schedule.json" +"%A, %B %d %Y at %I:%M%p" || printf "Never")
 
 cat << EOB
 {"items": [
@@ -12,6 +15,7 @@ cat << EOB
 	},
 	{
 		"title": "Open Schedule in Browser",
+		"arg": "https://www.olympics.com/en/milano-cortina-2026/${para:+paralympic-games/}schedule",
 		"variables": { "pref_id": "open" }
 	},
 	{
