@@ -1331,7 +1331,7 @@ Configure the [Hotkeys](https://www.alfredapp.com/help/workflows/triggers/hotkey
 			<key>description</key>
 			<string>Keywords for viewing the Schedules and Medal Tables.</string>
 			<key>label</key>
-			<string>Olympic Medals</string>
+			<string>Medal Tables</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -1392,7 +1392,7 @@ Configure the [Hotkeys](https://www.alfredapp.com/help/workflows/triggers/hotkey
 				<true/>
 			</dict>
 			<key>description</key>
-			<string>Interval to automatically refresh Schedule in minutes.</string>
+			<string>Interval to automatically refresh the Schedule in minutes.</string>
 			<key>label</key>
 			<string>Auto-Update</string>
 			<key>type</key>
