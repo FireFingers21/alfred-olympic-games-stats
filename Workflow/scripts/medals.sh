@@ -1,7 +1,8 @@
 #!/bin/zsh --no-rcs
 
 # Set variables for current games
-medals_file="${alfred_workflow_data}/2026/${para:+para/}medals.json"
+source "games.env"
+medals_file="${alfred_workflow_data}/${year}/${para:+para/}medals.json"
 
 # Get age of medals_file in minutes
 [[ -f "${medals_file}" ]] && minutes="$((($(date +%s)-$(date -r "${medals_file}" +%s))/60))"

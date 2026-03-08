@@ -4,16 +4,17 @@
 [[ "${keyword}" == "${schedule_keyword_para}" ]] && para=1
 
 # Set variables for current games
-baseUrl="https://www.olympics.com/en/milano-cortina-2026/${para:+paralympic-games/}results"
-schedule_file="${alfred_workflow_data}/2026/${para:+para/}schedule.json"
+source "games.env"
+resultsUrl="${baseUrl}/${para:+paralympic-games/}results"
+schedule_file="${alfred_workflow_data}/${year}/${para:+para/}schedule.json"
 id="${1}"
 
 getLink() {
 jq -r --arg query "${id}" \
-      --arg baseUrl "${baseUrl}" \
+      --arg resultsUrl "${resultsUrl}" \
 '([.groups[].unitId]) as $groupPhaseName |
 .units[] | select(.id == $query) |
-    "\($baseUrl)/" +
+    "\($resultsUrl)/" +
     "\(.disciplineCode)/" +
     (
         if ((["BTH","FSK","SJP"] as $d | .disciplineCode | IN($d[])) and (.eventType | . == "TEAM" or . == "DGRP")) then "te/"

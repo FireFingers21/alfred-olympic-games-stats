@@ -3,16 +3,18 @@
 # Paralympic check
 [[ "${keyword}" == "${schedule_keyword_para}" ]] || (( "${1}" )) && para=1
 
-schedule_file="${alfred_workflow_data}/2026/${para:+para/}schedule.json"
-medals_file="${alfred_workflow_data}/2026/${para:+para/}medals.json"
+# Set variables for current games
+source "games.env"
+schedule_file="${alfred_workflow_data}/${year}/${para:+para/}schedule.json"
+medals_file="${alfred_workflow_data}/${year}/${para:+para/}medals.json"
 games_file="${alfred_workflow_data}/olympic-games.json"
 
-mkdir -p "${alfred_workflow_data}/2026${para:+/para}"
+mkdir -p "${alfred_workflow_data}/${year}${para:+/para}"
 curl -sf --compressed --parallel --connect-timeout 10 \
-    -L "https://www.olympics.com/wmr${para:+-para}-owg2026/schedules/api/ENG/schedule" -o "${schedule_file}" \
-    -L "https://www.olympics.com/wmr${para:+-para}-owg2026/competition/api/ENG/medals" -o "${medals_file}" \
+    -L "${apiUrl}/schedules/api/ENG/schedule" -o "${schedule_file}" \
+    -L "${apiUrl}/competition/api/ENG/medals" -o "${medals_file}" \
     -L "https://www.olympics.com/en/api/v1/b2p/menu/topbar/olympic-games" -o "${games_file}" \
-    -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:147.0) Gecko/20100101 Firefox/147.0" \
+    -A "${userAgent}" \
 && downloadStatus=1
 
 if [[ -n "${downloadStatus}" ]]; then

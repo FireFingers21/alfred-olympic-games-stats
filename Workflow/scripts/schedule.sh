@@ -3,8 +3,10 @@
 # Paralympic check
 [[ "${alfred_workflow_keyword}" == "${schedule_keyword_para}" ]] && para=1
 
-# Get files for current games
-schedule_file="${alfred_workflow_data}/2026/${para:+para/}schedule.json"
+# Set variables for current games
+source "games.env"
+schedule_file="${alfred_workflow_data}/${year}/${para:+para/}schedule.json"
+medals_file="${alfred_workflow_data}/${year}/${para:+para/}medals.json"
 
 # Auto Update
 [[ -f "${medals_file}" && "$(jq 'try (.medalStandings.eventInfo | .totalEvents == .finishedEvents) catch false' "${medals_file}")" = true ]] && gamesFinished=true
