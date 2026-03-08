@@ -53,7 +53,7 @@ jq -cs \
 			"variables": { "stale": ((now - $utcStartDate) > (12*3600)) },
 			"mods": {"alt": {
 			    "subtitle":($utcStartDate | strflocaltime("%b %d")+" "*12+"⌥↩ \(if ($showOldEvents == 1) then "Hide" else "Show" end) old events"),
-				"variables": { "showOldEvents":($showOldEvents == 1 | not), "schedule_keyword": $alfred_workflow_keyword }
+				"variables": { "showOldEvents":($showOldEvents == 1 | not) }
 			}}
 		}) | (if ($showOldEvents == 1 or isempty(.[] | select(.variables.stale | not))) then . else [.[] | select(.variables.stale | not)] end)
 	else
