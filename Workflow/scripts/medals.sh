@@ -6,8 +6,9 @@ medals_file="${alfred_workflow_data}/2026/${para:+para/}medals.json"
 # Get age of medals_file in minutes
 [[ -f "${medals_file}" ]] && minutes="$((($(date +%s)-$(date -r "${medals_file}" +%s))/60))"
 
-# Download Medals Data
-if [[ "${forceReload}" -eq 1 || "$(date -r "${medals_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]]; then
+# Download/Auto Update Medals Data
+[[ -f "${medals_file}" && "$(jq 'try (.medalStandings.eventInfo | .totalEvents == .finishedEvents) catch false' "${medals_file}")" = true ]] && gamesFinished=true
+if [[ "${forceReload}" -eq 1 || "${gamesFinished:=false}" = false && "$(date -r "${medals_file}" +%s)" -lt "$(date -v -"${autoUpdate}"M +%s)" ]]; then
     # https://img.olympics.com/images/image/private/t_1-1_64/primary/f7v9edfa6utluhwnxcyq
     # Rate limit to only refresh if data is older than 1 minute
     [[ "${minutes}" -gt 0 || -z "${minutes}" ]] && reload=$(./scripts/reload.sh "${+para}") && minutes=0
