@@ -42,9 +42,9 @@ jq -cs \
 			"match": [
                 .disciplineName, $evtDesc,
                 (if ($notSpoiler or $spoilSearch == 1) then (.competitors | select(.) | unique_by(.noc) | $nocDict[].names."\(.[].noc)") else "" end),
-                ($utcStartDate | strflocaltime("\"%B %d\" \"%B %e\"")),
+                ($utcStartDate | strflocaltime("\"%B %d\"%e\"")),
                 (if (.medalFlag > 0) then "medal" else "" end),
-                (if $isCancelled then "Cancelled" elif ($isNow) then "live now" elif ($isDone) then "finished done" else "upcoming" end)
+                (if ($isCancelled) then "Cancelled" elif ($isNow) then "live now" elif ($isDone) then "finished done" else "upcoming" end)
             ] | map(select(.)) | join(" "),
 			"icon": { "path": "images/\(if ($para == 1) then "para" else "" end)sports/\(.disciplineCode)\(if $isCancelled then "cancelled" elif $isNow then "live" elif $isDone then "done" else "" end).png" },
 			"variables": { "stale": ((now - $utcStartDate) > (12*3600)) },
