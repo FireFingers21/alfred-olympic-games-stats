@@ -28,8 +28,8 @@ jq -cs \
 		(.startDate | sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) as $utcStartDate |
 		(.endDate | if . then (sub("(?<=:[0-9]{2})(\\+|-).*"; "Z") | fromdate - $timeAdj) else false end) as $utcEndDate |
 		(.status == "CANCELLED") as $isCancelled |
-		(if (($isCancelled|not) and now >= $utcStartDate and now < $utcEndDate) then "Now"+" "*8 else false end) as $isNow |
-		(if (($isCancelled|not) and now > $utcEndDate) then "Done"+" "*7 else false end) as $isDone |
+		(if (($isCancelled|not) and now >= $utcStartDate and now < $utcEndDate and .status != "FINISHED") then "Now"+" "*8 else false end) as $isNow |
+		(if (($isCancelled|not) and now > $utcEndDate or .status == "FINISHED") then "Done"+" "*7 else false end) as $isDone |
 		((if ($showDoneTime != 1) then $isDone else false end) // (if ($showNowTime != 1) then $isNow else false end) // ($utcStartDate | strflocaltime("%H:%M") | .+" "*(if (gsub("[^1]";"")|length > 1) then 7 else 6 end))) as $localStartTime |
 		(.eventUnitName + (.locationShortDescription | if contains("Sheet") then " - "+. else "" end)) as $evtDesc |
 		(.competitors.[0] | if (.code == "TBD") then .code else $nocDict[].emoji."\(.noc)" + " \(if ($para == 1) then .noc else .name end) \(if ($spoilSchedule == 1 and .results.winnerLoserTie == "W") then "✓" else "" end)" end) as $noc0 |
